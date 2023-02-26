@@ -69,3 +69,63 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # github-pages-test
+
+
+
+# Hosting React project to Github Pages Tutorial
+February 26, 2023 
+
+1. [Local] Create react project using CRA 
+```
+$ npx create-react-app github-pages-test
+$ cd github-pages-test
+```
+2. [GitHub] Create a github repository 
+* Must make a public repository to use the Github pages feature
+
+3. [Local] Set up GitHub repository 
+```
+echo "# github-pages-test" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/yjo5252/github-pages-test.git
+git push -u origin master
+```
+
+4. [GitHub] Access the Github repository's Settings Interface
+     * Set Source to master branch 
+     * check the website URL (e.g. https://yjo5252.github.io/github-pages-test/
+
+5. [Local] Set homepage property in `package.json` file (in the project folder)
+```
+"homepage": "https://yjo5252.github.io/github-pages.test/"
+```
+6. [Local] install gh-pages (in the project folder)
+```
+yarn add gh-pages
+```
+7. [Local] Add predeploy, deploy script command in `package.json` file.
+```
+"script":{
+   "predeploy": "react-scripts build", 
+   "deploy": "gh-pages -d build", 
+}
+```
+8. [Local] run yarn deploy 
+```
+$ yarn deploy 
+```
+     * this command will run predeploy & deploy scripts automatically. Therefore, it will build the project and deploy it. 
+     * As a result, `gh-pages` branch is added to the Github repository. 
+9. [GitHub] Switch sourch branch to gh-pages / root.
+     * GitHub Repository / settings / Pages / change Source / set to `gh-pages`
+10. [Internet] access the website URL. 
+     * for instance, "https://yjo5252.github.io/github-pages-test"
+     * the webpage will show default webpage created by CRA. 
+11. If you updaet the code, run `yarn deploy` in the local terminal, then you can publish the update to Github pages. 
+
+# Tips on publishing project to Github Repository 
+1. use the root file in settings not the documents
+2. did you run the `yarn deploy` command? access the Action tab in GitHub repository and wait until the project is finish building. When the sign says 'build finished', then  access the webpage. 
+
